@@ -1,0 +1,355 @@
+/* Sections Common */
+.section-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    /* Updated to a reliable, high-quality bar background */
+    /* Updated to a new reliable bar background */
+    /* Reverted to the reliable bar background as requested */
+    background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    /* Fixed attachment can cause issues on some devices/browsers */
+    background-attachment: scroll;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* More intense blur on the background itself, or overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-dark overlay */
+    backdrop-filter: blur(8px);
+    /* Blur effect on background */
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    /* Removed generic fade animation as requested */
+}
+
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    /* Reset layout for text flow */
+    display: block;
+}
+
+/* "Keys" - Color Wipe Animation (Orange -> White) */
+.hero-title>span:first-child {
+    display: inline-block;
+    color: transparent;
+    background: linear-gradient(to right, #ffffff 50%, var(--accent-gold) 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    /* Only Orange visible initially */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Speed up Keys wipe to 0.3s */
+    animation: colorWipe 0.3s ease-out forwards;
+}
+
+/* "Bar" Wrapper - Text defaults to Orange */
+.hero-title>span:last-child {
+    color: var(--accent-gold);
+    /* Ensure B and ar sit mainly on baseline */
+    display: inline-block;
+}
+
+/* "B" - Overshoot Animation (Orange -> White -> Orange) */
+.hero-title .bounce-char {
+    display: inline-block;
+    color: transparent;
+    /* Same gradient technique */
+    background: linear-gradient(to right, #ffffff 50%, var(--accent-gold) 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    /* Start Orange */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Animate: Wipe In -> Wipe Back with Bounce */
+    /* Duration 0.5s to allow physics to show */
+    animation: bounceBack 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.25s;
+}
+
+@keyframes colorWipe {
+    100% {
+        background-position: 0 0;
+        /* White */
+    }
+}
+
+@keyframes bounceBack {
+    0% {
+        background-position: 100% 0;
+        /* Orange */
+        transform: scale(1);
+    }
+
+    40% {
+        background-position: 0 0;
+        /* White (Peak of bounce) */
+        transform: scale(1.35);
+        /* Big Elastic Pop */
+    }
+
+    75% {
+        background-position: 80% 0;
+        transform: scale(0.9);
+        /* Rebound */
+    }
+
+    100% {
+        background-position: 100% 0;
+        /* Back to Orange */
+        transform: scale(1);
+        /* Settle */
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: #f0f0f0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+/* About Section - Dark Theme */
+.about {
+    background-color: #121212;
+    overflow: hidden;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-normal);
+}
+
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+.about-content h2 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.about-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 968px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-image {
+        height: 350px;
+    }
+}
+
+/* Menu Section - Dark Theme */
+.menu-section {
+    background-color: #0a0a0a;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.menu-card {
+    background-color: #1a1a1a;
+    padding: 0;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-gold);
+    /* Removed glow shadow */
+    box-shadow: none;
+}
+
+.menu-card.active {
+    border-color: var(--accent-gold);
+    transform: translateY(-5px);
+    /* Gentle lift on scroll trigger */
+}
+
+.menu-card h3 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.menu-card p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+
+
+/* Removed hover bar effect */
+
+.menu-section .btn {
+    min-width: 200px;
+    /* Ensure equal width on desktop */
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .menu-section .btn {
+        width: 100%;
+        /* Full width on mobile to match sizes */
+        margin-bottom: 1rem;
+    }
+}
+
+/* Info Section - Dark Theme */
+.info-section {
+    background-color: #121212;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.info-details h3 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.info-block {
+    margin-bottom: 2.5rem;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.info-block h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.info-block p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* Removed filter for original Google Maps colors */
+    filter: none;
+}
+
+@media (max-width: 968px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .map-container {
+        height: 350px;
+    }
+}

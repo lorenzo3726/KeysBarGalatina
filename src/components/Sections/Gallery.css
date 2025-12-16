@@ -1,0 +1,70 @@
+/* Gallery Slider */
+.gallery-slider-section {
+    background-color: var(--bg-dark);
+    padding: 0;
+    /* Removed top padding to eliminate "strip" */
+    padding-bottom: 50px;
+    /* Keep bottom spacing */
+    overflow: hidden;
+}
+
+.gallery-slider-track {
+    display: flex;
+    width: calc(300px * 20);
+    /* Assumes 10 images doubled for loop width approx */
+    /* Slower speed: increased from 40s to 80s */
+    animation: scroll 80s linear infinite;
+}
+
+.gallery-slider-track:hover {
+    animation-play-state: paused;
+}
+
+.gallery-slide {
+    width: 33.33vw;
+    /* Show 3 images at a time (100vw / 3) */
+    height: 400px;
+    flex: 0 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-slide:hover img {
+    transform: scale(1.1);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-33.33vw * 10));
+    }
+
+    /* Scroll by width of 10 images */
+}
+
+@media (max-width: 768px) {
+    .gallery-slide {
+        width: 100vw;
+        /* 1 image at a time on mobile */
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-100vw * 10));
+        }
+    }
+}

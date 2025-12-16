@@ -1,6 +1,7 @@
 import React from 'react';
 import './Experience.css';
 import './Sections.css';
+import birthdayCakeImg from '../../assets/birthday-cake.jpg';
 
 const Experience: React.FC = () => {
     const experiences = [
@@ -8,7 +9,7 @@ const Experience: React.FC = () => {
             title: 'Festeggia con Noi',
             description: 'Trasforma il tuo compleanno in un evento indimenticabile. Spazi esclusivi e catering personalizzato per rendere unica la tua festa.',
             // Birthday Cake image
-            image: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'
+            image: birthdayCakeImg
         },
         {
             title: 'Aperitivo con Noi',

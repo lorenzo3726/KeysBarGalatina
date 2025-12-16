@@ -13,7 +13,7 @@ const Menu: React.FC = () => {
             title: 'Food',
             description: 'Stuzzichini gourmet e piatti unici.',
             link: 'https://drive.google.com/file/d/1FexhUKcaoKxsQh4sjV54z7tBjUL6_j2S/view?usp=drive_link',
-            image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'
+            image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'
         },
         {
             title: 'Drink & Bevande',
